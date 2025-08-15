@@ -1,0 +1,10 @@
+artifacts_name: artifacts
+
+
+data_ingestion:
+  root_dir: artifacts/data_ingestation
+  source_URL: https://github.com/entbappy/Branching-tutorial/raw/master/Chicken-fecal-images.zip
+  local_data_file: artifacts/data_ingestation/data.zip
+  unzip_dir: artifacts/data_ingestation
+
+
