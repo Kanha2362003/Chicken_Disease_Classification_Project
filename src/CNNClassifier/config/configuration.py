@@ -1,7 +1,8 @@
 from CNNClassifier.constants import *
 import os
+from pathlib import Path
 from CNNClassifier.utils.common import read_yaml, create_directories
-from CNNClassifier.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig,PrepareCallbackConfig,Trainingconfig)
+from CNNClassifier.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig,PrepareCallbackConfig,Trainingconfig,EvaluationConfig)
 
 
 class ConfigurationManager:
@@ -55,7 +56,7 @@ class ConfigurationManager:
 
     def get_prepare_callback_config(self) -> PrepareCallbackConfig:
         config = self.config.prepare_callbacks
-        model_ckpt_dir = os.oath.dirname(config.checkpoint_model_filepath)
+        model_ckpt_dir = os.path.dirname(config.checkpoint_model_filepath)
         create_directories([
             Path(model_ckpt_dir),
             Path(config.tensorboard_root_log_dir)
@@ -97,7 +98,18 @@ class ConfigurationManager:
 
           return training_config
 
+    
 
+
+    def get_validation_config(self) -> EvaluationConfig:
+          eval_config = EvaluationConfig(
+                path_of_model = Path("artifacts/training/model.h5"),
+                training_data = Path("artifacts/data_ingestation/Chicken-fecal-images"),
+                all_params = self.params,
+                params_image_size = self.params.IMAGE_SIZE,
+                params_batch_size = self.params.BATCH_SIZE
+          )         
+          return eval_config
      
 
      

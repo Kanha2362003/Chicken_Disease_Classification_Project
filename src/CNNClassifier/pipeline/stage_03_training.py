@@ -1,5 +1,6 @@
 from CNNClassifier.config.configuration import ConfigurationManager
-from CNNClassifier.components import prepare_callbacks, training
+from CNNClassifier.components.prepare_callbacks import PrepareCallback
+from CNNClassifier.components.training import Training
 from CNNClassifier import logger
 
 
